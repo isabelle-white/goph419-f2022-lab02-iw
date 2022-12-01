@@ -53,7 +53,7 @@ Parameters:
 """
 
 
-from linalg_interp_new import gauss_inter_solve_new
+from linalg_interp_new1 import gauss_inter_solve
 import numpy as np
 
 #set up an A matrix which is diagonally dominant for the test to garuantee convergence
@@ -70,7 +70,7 @@ print(b)
 print('----')
  
 #solve the linear system using gauss_inter_solve
-x0_j = gauss_inter_solve_new(A, b, x0= None, tol=1e-8, alg='jacobi')
+x0_j = gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='jacobi')
  
 #print the solution matrix
 print('The solution is = \n', x0_j, '\n using the gauss_inter_solve function - Jacobi')
@@ -83,7 +83,7 @@ print('A @ x0 = \n', rhs)
 print('----')
 
 #solve the linear system using gauss_inter_solve
-x0_s = gauss_inter_solve_new(A, b, x0= None, tol=1e-8, alg='seidel')
+x0_s = gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel')
  
 #print the solution matrix
 print('The solution is = \n', x0_s, '\n using the gauss_inter_solve function - Seidel')
