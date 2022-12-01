@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 16 18:00:12 2022
-
-@author: izzywhite
-"""
-
-import numpy as np
-
 
 def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel', max_it = 1000):
     """
