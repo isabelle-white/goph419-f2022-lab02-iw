@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel', max_it = 1000):
+import numpy as np
+
+
+def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel'):
     """
     
 
@@ -83,7 +86,7 @@ def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel', max_it = 1000):
     #make it have the same number of rows as A
     n = len(A[0])
     #make it have the same number of columns as b - if there are more than one
-    # m=len(b[1])
+   # m=len(b[1])
     if x0==None:
        x0=np.zeros(n).reshape(-1, 1) #create a column vecor with the same number of rows as A  
                # ensure that x0 is 2d
@@ -124,8 +127,8 @@ def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel', max_it = 1000):
                 dX = x0 - x_old
                 #calculate the approximate error
                 eps_a=np.linalg.norm(dX, axis=0)/np.linalg.norm(x0, axis=0)
-
-		#raise error if N>max_it
+                
+                #raise error if N>max_it
                 if N > max_it:
                     raise RuntimeWarning('System did not converge before the maximum number of iterations was reached')
                
@@ -134,19 +137,17 @@ def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel', max_it = 1000):
        
         #this is for when the jacobi method is used    
     elif alg == 'jacobi':
-    	while np.max(eps_a) > tol and N < max_it:
-        	x_old = np.array(x0)
-        	x0 = b_star - A0_star@x0
-        	dX = x0 - x_old
+        while np.max(eps_a) > tol and N < max_it:
+            x_old = np.array(x0)
+            x0 = b_star - A0_star@x0
+            dX = x0 - x_old
                
                     #calculate the approximate error
-        	eps_a=np.linalg.norm(dX, axis=0)/np.linalg.norm(x0, axis=0)
-
-		#raise error if N>max_it
-                if N > max_it:
+            eps_a=np.linalg.norm(dX, axis=0)/np.linalg.norm(x0, axis=0)
+            
+            #raise error if N>max_it
+            if N > max_it:
                     raise RuntimeWarning('System did not converge before the maximum number of iterations was reached')
-
-
            
             #iterating through all different values in the matrix
     x0=np.reshape(x0,(n,n))        
