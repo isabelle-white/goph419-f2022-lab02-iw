@@ -148,9 +148,8 @@ def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel'):
            
             #iterating through all different values in the matrix
     x0=np.reshape(x0,(n,n))  
-    #only return the a solution vector the same shape as b       
-    x0_final = x0[:, 0].reshape(len(x0[1]),1)
-    return x0_final
+
+    return x0
     
     
     
