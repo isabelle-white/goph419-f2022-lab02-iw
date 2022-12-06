@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import numpy as np
 
 
@@ -150,8 +147,10 @@ def gauss_inter_solve(A, b, x0= None, tol=1e-8, alg='seidel'):
                     raise RuntimeWarning('System did not converge before the maximum number of iterations was reached')
            
             #iterating through all different values in the matrix
-    x0=np.reshape(x0,(n,n))        
-    return x0
+    x0=np.reshape(x0,(n,n))  
+    #only return the a solution vector the same shape as b       
+    x0_final = x0[:, 0].reshape(len(x0[1]),1)
+    return x0_final
     
     
     
